@@ -1,0 +1,349 @@
+<!--socialmedia/post_list.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+            color: #262626;
+        }
+
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #dbdbdb;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-right: auto;
+        }
+
+        .logo img {
+            height: 40px;
+            width: 100px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #262626;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: #262626;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a img {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+        }
+
+        nav ul li a:hover {
+            color: #000;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .post-container {
+            background-color: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+        .post-header img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 1rem;
+        }
+
+        .post-header strong {
+            font-size: 14px;
+            color: #262626;
+        }
+
+        .post-header span {
+            margin-left: auto;
+            font-size: 12px;
+            color: #8e8e8e;
+        }
+
+        .post-content {
+            padding: 1rem;
+            font-size: 14px;
+            color: #262626;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-top: 1px solid #dbdbdb;
+            background-color: #f9f9f9;
+        }
+
+        .post-actions a {
+            color: #262626;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .post-actions a img {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+        }
+
+        .post-actions a:hover {
+            color: #000;
+        }
+
+        .post-actions .like-share {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .post-actions .edit-delete {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+
+        .post-actions .edit-delete a {
+            font-size: 14px;
+            font-weight: normal;
+            color: #007bff;
+        }
+        
+
+        .post-actions .edit-delete a:hover {
+            text-decoration: underline;
+        }
+
+        .comments-section {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            border-top: 1px solid #dbdbdb;
+        }
+       
+
+        .comment {
+            border-bottom: 1px solid black;
+            padding: 0.5rem 0;
+        }
+
+        .comment:last-of-type {
+            border-bottom: none;
+        }
+
+        .comment p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .comment small {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 12px;
+            color: #8e8e8e;
+        }
+        
+        .comment-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-top: 1px solid #dbdbdb;
+            background-color: white;
+            background: none;
+        }
+
+        .comment-actions a {
+            color: #262626;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .comment-actions a img {
+            width: 10px;
+            height: 10px;
+            margin-right: 0.5rem;
+        }
+
+        .comment-actions a:hover {
+            color: #000;
+        }
+
+        .comment-actions .edit-delete{
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .comment-actions .edit-delete a {
+            font-size: 14px;
+            font-weight: normal;
+            color: #007bff;
+        }
+        
+
+        .comment-actions .edit-delete a:hover {
+            text-decoration: none;
+            color: red;
+        }
+      
+
+        .add-comment {
+            margin-top: 1rem;
+        }
+
+        .add-comment a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .add-comment a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <header>
+        <div class="logo">
+            <img src="{% static 'images/postweet.png' %}" alt="Postweet Logo">
+            <h1>Arda POSTS</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'posts:post_list' %}"><img src="{% static 'images/home_icon.png' %}" alt="Home">Home</a></li>
+                <li><a href="{% url 'posts:create_post' %}"><img src="{% static 'images/create_icon.jpg' %}" alt="Create Post">New Post</a></li>
+                <li><a href="{% url 'posts:profile' %}"><img src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}{% static 'images/default_avatar.jpg' %}{% endif %}" alt="Profile">Profile</a></li>
+                <li><a href="{% url 'posts:logout' %}"><img src="{% static 'images/logout_icon.png' %}" alt="Logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% for post in posts %}
+            <div class="post-container">
+                <div class="post-header">
+                    <img src="{% if post.author.profile_picture %}{{ post.author.profile_picture.url }}{% else %}{% static 'images/default_avatar.jpg' %}{% endif %}" alt="User Avatar">
+                    <strong>{{ post.author.username }}</strong>
+                    <span>{{ post.created_at|date:"Y-m-d H:i" }}</span>
+                </div>
+                <div class="post-content">
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="Post Image">
+                    {% endif %}
+                    <p>{{ post.content }}</p>
+                </div>
+                <div class="post-actions">
+                    <div class="like-share">
+                        <a href="{% url 'posts:like_post' post.id %}">
+                            <img src="{% static 'images/like_icon.jpg' %}" alt="Like">Like ({{ post.total_likes }})
+                        </a>
+                        <a href="{% url 'posts:share_post' post.id %}">
+                            <img src="{% static 'images/share_icon.png' %}" alt="Share">Share ({{ post.total_shares }})
+                        </a>
+                        <a href="{% url 'posts:add_comment' post.id %}">
+                            <img src="{% static 'images/comments.png' %}" alt="Comments">Comments ({{ post.total_comments }})
+                        </a>
+                    </div>
+                    
+                    
+                
+                    {%if post.author.username == user.username %}
+                    <div class="edit-delete">
+                        <a href="{% url 'posts:edit_post' post.id %}"><img src="{% static 'images/edit_icon.png' %}" alt="Edit">Edit</a>
+                        <a href="{% url 'posts:delete_post' post.id %}"><img src="{% static 'images/delete_icon.png' %}" alt="Delete">Delete</a>
+                    </div>
+                    {%endif%}
+                </div>
+                <div class="comments-section">
+                    {% for comment in post.comments.all %}
+                        <div class="comment">
+                            <p>{{ comment.author.username }}: {{ comment.content }} {%if post.author.username == user.username or comment.author.username == user.username%}
+                                <div class="comment-actions">
+                                    <div class="edit-delete" >
+                                        
+                                        <a href="{% url 'posts:delete_comment' comment_id=comment.id %}"><img src="{% static 'images/delete_icon.png' %}" alt="Delete">Delete</a>
+                                     </div>
+                                </div>
+                            
+                                 
+                             {%endif%}</p>
+                            <small>{{ comment.created_at|date:"Y-m-d H:i" }}</small>
+                            
+                        </div>
+                    {% empty %}
+                        <p>No comments yet.</p>
+                    {% endfor %}
+                    <div class="add-comment">
+                        <a href="{% url 'posts:add_comment' post.id %}">Add a comment</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No posts available.</p>
+        {% endfor %}
+    </main>
+</body>
+</html>
